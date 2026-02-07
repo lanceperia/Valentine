@@ -32,16 +32,21 @@
             height: 60px;
         }
 
-        .btn {
-            padding: 15px 35px;
-            font-size: 18px;
-            font-weight: bold;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: absolute;
-        }
+.btn {
+    padding: 15px 35px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: absolute;
+    
+    /* ADD THESE THREE LINES */
+    outline: none; 
+    user-select: none;
+    -webkit-tap-highlight-color: transparent; 
+}
 
         #yesBtn {
             background-color: #ff4d6d;
