@@ -103,29 +103,36 @@
             isSwapped = !isSwapped;
         }
 
-        // The Switcheroo: Triggered when mouse enters the "No" button area
+        // DESKTOP: Swaps when the mouse touches it
         noBtn.addEventListener('mouseenter', () => {
             swapButtons();
         });
 
-        noBtn.addEventListener('click', () => {
+        // MOBILE: Swaps when tapped. 
+        // We use preventDefault so the "click" doesn't trigger a second swap.
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault(); 
             swapButtons();
         });
 
-        // Final Win
+        // THE ULTIMATE TRAP: If she actually manages to click "No", 
+        // we'll just treat it as a "Yes" anyway. She can't win!
+        noBtn.addEventListener('click', () => {
+            celebrate(); 
+        });
+
+        // Normal Yes button
         yesBtn.addEventListener('click', () => {
+            celebrate();
+        });
+
+        function celebrate() {
             askSection.style.display = 'none';
             successSection.style.display = 'block';
             confettiEffect();
-        });
-
-        // Just in case she's fast enough to click No (for mobile/touch)
-        noBtn.addEventListener('click', () => {
-            swapButtons();
-        });
+        }
 
         function confettiEffect() {
-            // Simple background color flash for excitement
             document.body.style.backgroundColor = '#ffccd5';
         }
     </script>
