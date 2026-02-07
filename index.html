@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Very Serious Question</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #fff0f3;
+            font-family: 'Arial', sans-serif;
+        }
+        #card {
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(255, 75, 110, 0.2);
+            text-align: center;
+            width: 350px;
+        }
+        h1 { color: #ff4d6d; font-size: 24px; margin-bottom: 30px; }
+        
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+            height: 60px;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: absolute;
+        }
+
+        #yesBtn {
+            background-color: #ff4d6d;
+            color: white;
+            left: 30px;
+        }
+
+        #noBtn {
+            background-color: #ced4da;
+            color: #495057;
+            right: 30px;
+        }
+
+        .success-msg { display: none; }
+        .success-msg h1 { color: #ff124e; }
+        img { width: 150px; margin-bottom: 20px; border-radius: 20px; }
+    </style>
+</head>
+<body>
+
+    <div id="card">
+        <div id="ask-section">
+            <img src="./cat1.gif" alt="Puppy Eyes">
+            <h1>Will you be my Valentine? ❤️</h1>
+            <div class="button-container">
+                <button id="yesBtn" class="btn">YES</button>
+                <button id="noBtn" class="btn">NO</button>
+            </div>
+        </div>
+
+        <div id="success-section" class="success-msg">
+            <img src="./cat2.gif" alt="Celebration">
+            <h1>YAY! Best decision ever! 💍</h1>
+            <p>I love you to the moon and back!</p>
+        </div>
+    </div>
+
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const askSection = document.getElementById('ask-section');
+        const successSection = document.getElementById('success-section');
+
+        let isSwapped = false;
+
+        function swapButtons() {
+            if (!isSwapped) {
+                yesBtn.style.left = '180px';
+                noBtn.style.right = '180px';
+            } else {
+                yesBtn.style.left = '30px';
+                noBtn.style.right = '30px';
+            }
+            isSwapped = !isSwapped;
+        }
+
+        // The Switcheroo: Triggered when mouse enters the "No" button area
+        noBtn.addEventListener('mouseenter', () => {
+            swapButtons();
+        });
+
+        // Final Win
+        yesBtn.addEventListener('click', () => {
+            askSection.style.display = 'none';
+            successSection.style.display = 'block';
+            confettiEffect();
+        });
+
+        // Just in case she's fast enough to click No (for mobile/touch)
+        noBtn.addEventListener('click', () => {
+            swapButtons();
+        });
+
+        function confettiEffect() {
+            // Simple background color flash for excitement
+            document.body.style.backgroundColor = '#ffccd5';
+        }
+    </script>
+</body>
+</html>
